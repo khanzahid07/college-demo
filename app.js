@@ -1,5 +1,20 @@
+import { EventEmitter } from "node:events";
 
+class Utils extends EventEmitter {
+  constructor(name) {
+    super();
+    this.name = name;
+  }
 
-import couner from './demo.js';
+  speak(message) {
+    this.emit("speak", message);
+  }
+}
 
-console.log(couner(['shar' , 'hello ', 'world']));
+const shou = new Utils("shou");
+
+shou.on("speak", (message) => {
+  console.log(`${shou.name} said: ${message}`);
+});
+
+shou.speak("hello");
