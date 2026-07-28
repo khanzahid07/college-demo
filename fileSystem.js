@@ -29,11 +29,30 @@ console.log("hello bro , i am here to tell you something");
 
 //write a file
 
-fs.writeFile("message.txt", h, (err) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
+// fs.writeFile("message.txt", h, (err) => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
 
-  console.log("File created!");
-});
+//   console.log("File created!");
+// });
+
+//create a file
+// fs.appendFile("what.txt", "\n I love node.js", (err) => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   console.log("Text added");
+// });
+
+//delete a file
+// fs.unlink("message.txt", (err) => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+
+//   console.log("File deleted");
+// });
