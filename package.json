@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "express": "^5.2.1"
-  }
+  },
+  "name": "college-demo",
+  "version": "1.0.0",
+  "description": "A little test to learn node js",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanzahid07/college-demo.git"
+  },
+  "keywords": [
+    "kz"
+    
+  ],
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khanzahid07/college-demo/issues"
+  },
+  "homepage": "https://github.com/khanzahid07/college-demo#readme"
 }
