@@ -23,20 +23,25 @@
 // server.listen(3000, "127.0.0.8");
 // console.log("yo dawgs , now listening to port 3000");
 
-// import { createServer } from "http";
+import { createServer } from "http";
+import { createReadStream } from "fs";
 
-// const server = createServer((req, res) => {
-//   console.log("request received");
+const server = createServer((req, res) => {
+  console.log("request received" + req.url);
 
-//   res.writeHead(200, { "content-type": "text/plain" });
-//   res.end("hey world");
-// });
+  res.writeHead(200, { "content-type": "text/html" });
 
-// server.listen(3000, () => {
-//   console.log("Server running on port 3000");
-// });
+  let myReadStream = createReadStream("./index.html", "utf-8");
+  myReadStream.pipe(res);
+  // //
+  // createReadStream.pipe(res);
+});
 
-//create readStream
+server.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+// create readStream
 
 // import { createReadStream } from "fs";
 
@@ -56,15 +61,21 @@
 //   console.log(err);
 // });
 
-import { createReadStream, createWriteStream } from "fs";
+// import { createReadStream, createWriteStream } from "fs";
 
-const stream = createReadStream("./README.md", {
-  encoding: "utf-8",
-});
+// const stream = createReadStream("./README.md", {
+//   encoding: "utf-8",
+// });
 
-const writeStream = createWriteStream("./hello.txt");
+// stream.on("data", (chunk) => {
+//   console.log(chunk);
+//   console.log("just finished");
+// });
 
-stream.on("data", (chunk) => {
-  console.log("finished reading the file");
-  writeStream.write(chunk);
-});
+// const writeStream = createWriteStream("./hello.txt");
+// stream.pipe(writeStream);
+
+// stream.on("data", (chunk) => {
+//   console.log("finished reading the file");
+//   writeStream.write(chunk);
+// });
