@@ -5,33 +5,15 @@ let app = express();
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
-  console.log("request received" + req.url);
+  res.render("index", { name: "Zahid" });
 });
 
-app.get("/api", (req, res) => {
-  res.writeHead(200, { "content-type": "application/json" });
-
-  const myObj = {
-    name: "John Doe",
-    age: 30,
-    occupation: "Software Engineer",
-  };
-
-  res.end(JSON.stringify(myObj));
+app.get("/how", (req, res) => {
+  res.render("how");
 });
 
-app.get("/file", (req, res) => {
-  res.sendFile("./index.html", { root: "." });
-});
-
-app.get("/stream", (req, res) => {
-  res.sendFile("./what.html", { root: "." });
-});
-
-app.get("/stream/:id", (req, res) => {
-  const id = req.params.id;
-  res.send(`Streaming file with ID: ${id}`);
+app.get("/what", (req, res) => {
+  res.render("what");
 });
 
 app.get("/profile/:name", (req, res) => {
