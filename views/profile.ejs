@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: skyblue;
+            font-family: verdana, sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            color: #fff;
+        }
+        p {
+            color: #fff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        </style>
+
+</head>
+<body>
+    
+
+   <h1>Welcome to the College Demo of <%= name %></h1>
+   <p>Age: <%= data.age %> <br>and  the </br> occuption is : <%= data.occupation %> <br> and he is </br> from : <%= data.from %></p>
+   <h2>Hobbies</h2>
+   <ul>
+     <% data.hobbies.forEach(function(hobby) { %>
+        <li><%= hobby %></li>    
+     <% }); %>
+   </ul>
+</body>
+</html>

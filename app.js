@@ -1,6 +1,8 @@
 import express from "express";
 import { createReadStream } from "node:fs";
+
 let app = express();
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -20,14 +22,27 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/file", (req, res) => {
-  res.writeHead(200, { "content-type": "text/html" });
-  let myReadStream = createReadStream("./index.html", "utf-8");
-  myReadStream.pipe(res);
+  res.sendFile("./index.html", { root: "." });
+});
+
+app.get("/stream", (req, res) => {
+  res.sendFile("./what.html", { root: "." });
 });
 
 app.get("/stream/:id", (req, res) => {
   const id = req.params.id;
   res.send(`Streaming file with ID: ${id}`);
+});
+
+app.get("/profile/:name", (req, res) => {
+  const name = req.params.name;
+  const data = {
+    age: 30,
+    occupation: "Software Engineer",
+    from: "Afghanistan",
+    hobbies: ["Reading", "Traveling", "Coding"],
+  };
+  res.render("profile", { name: name, data: data });
 });
 
 app.listen(3000, () => {
