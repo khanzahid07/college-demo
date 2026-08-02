@@ -1,81 +1,35 @@
-// const http = require("http");
+import express from "express";
+import { createReadStream } from "node:fs";
+let app = express();
 
-// const server = http.createServer((req, res) => {
-//   res.write("Hello World");
-//   res.end();
-// });
-
-// server.listen(3000, () => {
-//   console.log("Server running on port 3000");
-// });
-
-//we should write {createserver}
-
-// import { createServer } from "http";
-
-// const server = createServer((req, res) => {
-//   console.log(`the request is on the ${req}`);
-//   res.writeHead(200, { "content-type": "text/plain" });
-
-//   res.end("hey world");
-// });
-
-// server.listen(3000, "127.0.0.8");
-// console.log("yo dawgs , now listening to port 3000");
-
-import { createServer } from "http";
-import { createReadStream } from "fs";
-
-const server = createServer((req, res) => {
+app.get("/", (req, res) => {
+  res.send("Hello World");
   console.log("request received" + req.url);
+});
 
+app.get("/api", (req, res) => {
+  res.writeHead(200, { "content-type": "application/json" });
+
+  const myObj = {
+    name: "John Doe",
+    age: 30,
+    occupation: "Software Engineer",
+  };
+
+  res.end(JSON.stringify(myObj));
+});
+
+app.get("/file", (req, res) => {
   res.writeHead(200, { "content-type": "text/html" });
-
   let myReadStream = createReadStream("./index.html", "utf-8");
   myReadStream.pipe(res);
-  // //
-  // createReadStream.pipe(res);
 });
 
-server.listen(3000, () => {
+app.get("/stream/:id", (req, res) => {
+  const id = req.params.id;
+  res.send(`Streaming file with ID: ${id}`);
+});
+
+app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
-
-// create readStream
-
-// import { createReadStream } from "fs";
-
-// const stream = createReadStream("./README.md", {
-//   encoding: "utf-8",
-// });
-
-// stream.on("data", (chunk) => {
-//   console.log(chunk);
-// });
-
-// stream.on("end", () => {
-//   console.log("Finished reading file");
-// });
-
-// stream.on("error", (err) => {
-//   console.log(err);
-// });
-
-// import { createReadStream, createWriteStream } from "fs";
-
-// const stream = createReadStream("./README.md", {
-//   encoding: "utf-8",
-// });
-
-// stream.on("data", (chunk) => {
-//   console.log(chunk);
-//   console.log("just finished");
-// });
-
-// const writeStream = createWriteStream("./hello.txt");
-// stream.pipe(writeStream);
-
-// stream.on("data", (chunk) => {
-//   console.log("finished reading the file");
-//   writeStream.write(chunk);
-// });
