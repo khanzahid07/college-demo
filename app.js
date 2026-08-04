@@ -3,6 +3,7 @@ import { createReadStream } from "node:fs";
 
 let app = express();
 app.set("view engine", "ejs");
+app.use("/styles", express.static("styles"));
 
 app.get("/", (req, res) => {
   res.render("index", { name: "Zahid" });
@@ -13,7 +14,7 @@ app.get("/how", (req, res) => {
 });
 
 app.get("/what", (req, res) => {
-  res.render("what");
+  res.render("what", { qs: req.query });
 });
 
 app.get("/profile/:name", (req, res) => {

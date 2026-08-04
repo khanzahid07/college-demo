@@ -2,24 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What </title>
 
 
-    <style>
-        body {
-            background-color: skyblue;
-            font-family: verdana, sans-serif;
-            text-align: center;
-            color: #fff;
-        }
-        h1 {
-            color: #fff;
-        }
-        p {
-            color: #fff;
-        }
-    </style>
+   
 </head>
 <body>
     
@@ -29,5 +17,17 @@
         hello world 
     </h1>
     <p>wahta ajklajdoafoap</p>
+  
+    <form>
+   <label for="name">Name:</label>
+   <input type="text" id="name" name="name" value="<%= qs.person %>"><br><br>
+    <label for="department">Department:</label>
+    <input type="text" id="department" name="department" value="<%= qs.dept %>"><br><br>
+    <label for="year">Year:</label>
+    <input type="text" id="year" name="year" value="<%= qs.year %>"><br><br>
+    <input type="submit" value="Submit">
+
+
+    </form>
 </body>
 </html>
