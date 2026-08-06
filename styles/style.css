@@ -19,6 +19,7 @@ form {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  margin: 5px;
 }
 
 input {
@@ -28,6 +29,7 @@ input {
   border: none;
   padding: 10px;
   outline: none;
+  margin: 5px;
 }
 
 label {

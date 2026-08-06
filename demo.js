@@ -1,19 +1,39 @@
-import { createServer } from "http";
-import { createReadStream } from "fs";
+import bodyParser from "body-parser";
+import express from "express";
 
-const server = createServer((req, res) => {
-  console.log("request received" + req.url);
-  res.writeHead(200, { "content-type": "application/json" });
+const app = express();
+app.set("view engine", "ejs");
+app.use("/styles", express.static("styles"));
 
-  const myObj = {
-    name: "John Doe",
-    age: 30,
-    occupation: "Software Engineer",
-  };
+const urlParser = bodyParser.urlencoded({ extended: false });
 
-  res.end(JSON.stringify(myObj));
+app.get("/", (req, res) => {
+  res.render("index", { name: "Zahid" });
 });
 
-server.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.get("/profile/:name", (req, res) => {
+  const name = req.params.name;
+
+  const data = {
+    age: 30,
+    occupation: "Software Engineer",
+    from: "Afghanistan",
+    hobbies: ["Reading", "Traveling", "Coding"],
+  };
+
+  res.render("profile", { name: name, data: data });
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact", { qs: req.query });
+});
+
+app.post("/contact", urlParser, (req, res) => {
+  console.log(req.body);
+
+  res.render("contact-succes", { data: req.body });
+});
+
+app.listen(3000, () => {
+  console.log("The server is listening on port 3000");
 });
